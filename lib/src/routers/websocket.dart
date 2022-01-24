@@ -5,7 +5,7 @@ import 'package:apollocode_dart_utilities/src/services/websocket.dart';
 
 class WebsocketRouter {
   WebsocketRouter(NestedRoute app) {
-    app.get('/ws', (req, res) {
+    app.get('/', (req, res) {
       return WebSocketSession(
         onOpen: (ws) {
           WebsocketService.users.add(ws);
