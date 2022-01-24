@@ -20,7 +20,9 @@ class WebsocketService {
 
   static sendAll(WSData data) {
     for (var user in WebsocketService.users) {
-      user.ws.send(data);
+      try {
+        user.ws.send(data);
+      } catch (_) {}
     }
   }
 }
