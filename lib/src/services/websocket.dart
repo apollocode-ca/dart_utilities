@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:apollocode_dart_utilities/src/models/ws_data.dart';
 import 'package:apollocode_dart_utilities/src/models/ws_user.dart';
 import 'package:alfred/src/type_handlers/websocket_type_handler.dart';
@@ -14,7 +16,7 @@ class WebsocketService {
 
   static sendMessageToUser(WSData data, String userUid) {
     WebsocketService.users.where((user) => user.id == userUid).forEach((user) =>
-        user.ws.send({'channel': data.event, 'data': data.data.toString()}));
+        user.ws.send(jsonEncode({'channel': data.event, 'data': data.data.toString()})));
   }
 
   static sendMessageToUserRaw(dynamic data, String userUid) {
@@ -26,7 +28,7 @@ class WebsocketService {
   static sendAll(WSData data) {
     for (var user in WebsocketService.users) {
       try {
-        user.ws.send({'channel': data.event, 'data': data.data.toString()});
+        user.ws.send(jsonEncode({'channel': data.event, 'data': data.data}));
       } catch (_) {}
     }
   }
