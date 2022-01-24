@@ -29,7 +29,7 @@ class WebsocketRouter {
                 return;
               }
 
-              id = await getIdentifier!(authorization);
+              id = await getIdentifier(authorization);
             }
 
             WebsocketService.users.add(WsUser(ws, id!));
