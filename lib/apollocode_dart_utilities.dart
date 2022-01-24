@@ -5,4 +5,13 @@ library apollocode_dart_utilities;
 
 export 'src/apollocode_dart_utilities_base.dart';
 
-// TODO: Export any libraries intended for clients of this package.
+// MIDDLEWARES
+export 'src/middlewares/event.dart';
+
+// ROUTERS
+export 'src/routers/websocket.dart';
+
+// SERVICES
+export 'src/services/websocket.dart';
+
+
