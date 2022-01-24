@@ -13,8 +13,14 @@ class WebsocketService {
   }
 
   static sendMessageToUser(WSData data, String userUid) {
-     WebsocketService.users
-                .where((user) => user.id == userUid)
-                .forEach((user) => user.ws.send(data));
+    WebsocketService.users
+        .where((user) => user.id == userUid)
+        .forEach((user) => user.ws.send(data));
+  }
+
+  static sendAll(WSData data) {
+    for (var user in WebsocketService.users) {
+      user.ws.send(data);
+    }
   }
 }
