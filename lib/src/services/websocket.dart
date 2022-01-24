@@ -15,13 +15,13 @@ class WebsocketService {
   static sendMessageToUser(WSData data, String userUid) {
     WebsocketService.users
         .where((user) => user.id == userUid)
-        .forEach((user) => user.ws.send(data));
+        .forEach((user) => user.ws.send({ 'channel' : data.event, 'data': data.data }));
   }
 
   static sendAll(WSData data) {
     for (var user in WebsocketService.users) {
       try {
-        user.ws.send(data);
+        user.ws.send({ 'channel' : data.event, 'data': data.data });
       } catch (_) {}
     }
   }
