@@ -13,15 +13,28 @@ class WebsocketService {
   }
 
   static sendMessageToUser(WSData data, String userUid) {
+    WebsocketService.users.where((user) => user.id == userUid).forEach((user) =>
+        user.ws.send({'channel': data.event, 'data': data.data.toString()}));
+  }
+
+  static sendMessageToUserRaw(dynamic data, String userUid) {
     WebsocketService.users
         .where((user) => user.id == userUid)
-        .forEach((user) => user.ws.send({ 'channel' : data.event, 'data': data.data }));
+        .forEach((user) => user.ws.send(data));
   }
 
   static sendAll(WSData data) {
     for (var user in WebsocketService.users) {
       try {
-        user.ws.send({ 'channel' : data.event, 'data': data.data });
+        user.ws.send({'channel': data.event, 'data': data.data.toString()});
+      } catch (_) {}
+    }
+  }
+
+  static sendAllRaw(dynamic data) {
+    for (var user in WebsocketService.users) {
+      try {
+        user.ws.send(data);
       } catch (_) {}
     }
   }
