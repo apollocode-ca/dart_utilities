@@ -42,8 +42,9 @@ class WebsocketRouter {
           onClose: (ws) {
             WebsocketService.users.removeWhere((element) => element.ws == ws);
             print("USER LEFT");
-            WebsocketService.users
-                .forEach((user) => user.ws.send('A user has left.'));
+            for (var user in WebsocketService.users) {
+              user.ws.send('A user has left.');
+            }
           },
           onMessage: WebsocketService.onMessage);
     });

@@ -14,4 +14,7 @@ export 'src/routers/websocket.dart';
 // SERVICES
 export 'src/services/websocket.dart';
 
+// MODELS
+export 'src/models/ws_data.dart';
+
 
