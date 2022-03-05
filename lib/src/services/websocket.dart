@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:apollocode_dart_utilities/src/models/ws_data.dart';
 import 'package:apollocode_dart_utilities/src/models/ws_user.dart';
+// ignore: implementation_imports
 import 'package:alfred/src/type_handlers/websocket_type_handler.dart';
 import 'package:eventify/eventify.dart';
 

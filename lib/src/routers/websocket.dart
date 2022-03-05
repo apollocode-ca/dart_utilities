@@ -32,7 +32,7 @@ class WebsocketRouter {
               id = await getIdentifier(authorization);
             }
 
-            WebsocketService.users.add(WsUser(ws, id!));
+            WebsocketService.users.add(WsUser(ws, id ?? ""));
             print("USER JOINED");
 
             WebsocketService.users
