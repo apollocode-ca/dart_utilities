@@ -16,5 +16,6 @@ export 'src/services/websocket.dart';
 
 // MODELS
 export 'src/models/ws_data.dart';
-
-
+export 'src/models/suggestion.dart';
+export 'src/models/translated_string.dart';
+export 'src/models/stripe/card.dart';
