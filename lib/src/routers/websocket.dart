@@ -34,10 +34,6 @@ class WebsocketRouter {
 
             WebsocketService.users.add(WsUser(ws, id ?? ""));
             print("USER JOINED");
-
-            WebsocketService.users
-                .where((user) => user.ws != ws)
-                .forEach((user) => user.ws.send('A new user joined the chat.'));
           },
           onClose: (ws) {
             WebsocketService.users.removeWhere((element) => element.ws == ws);
