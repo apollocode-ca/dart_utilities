@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 
 import 'package:alfred/alfred.dart';
 // ignore: implementation_imports
@@ -35,13 +36,25 @@ class WebsocketRouter {
             }
 
             WebsocketService.users.add(WsUser(ws, id ?? ""));
-            print("USER JOINED");
+            String message = jsonEncode({
+              'channel': 'user_joined',
+              'type': 'userJoined',
+              'data': {'id': id ?? ""}
+            });
+            WebsocketService.users
+                .where((user) => user.ws != ws)
+                .forEach((user) => user.ws.send(message));
           },
           onClose: (ws) {
             WebsocketService.users.removeWhere((element) => element.ws == ws);
             print("USER LEFT");
+            String message = jsonEncode({
+              'channel': 'user_left',
+              'type': 'userJoined',
+              'data': {'id': ""}
+            });
             for (var user in WebsocketService.users) {
-              user.ws.send('A user has left.');
+              user.ws.send(message);
             }
           },
           onMessage: WebsocketService.onMessage);
