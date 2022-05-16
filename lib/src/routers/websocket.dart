@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:alfred/alfred.dart';
 // ignore: implementation_imports
